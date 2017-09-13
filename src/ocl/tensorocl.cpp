@@ -36,7 +36,7 @@ void SetTensor(Handle& handle, const TensorDescriptor& yDesc, Data_t y, const vo
 
     if(y == nullptr || alpha == nullptr)
     {
-        MIOPEN_THROW(miopenStatusBadParm);
+        MIOPEN_THROW("miopenStatusBadParm");
     }
 
     size_t global_threads = yDesc.GetElementSize();
@@ -66,7 +66,7 @@ void ScaleTensor(Handle& handle, const TensorDescriptor& yDesc, Data_t y, const 
 
     if(y == nullptr || alpha == nullptr)
     {
-        MIOPEN_THROW(miopenStatusBadParm);
+        MIOPEN_THROW("miopenStatusBadParm");
     }
 
     size_t global_threads = yDesc.GetElementSize();
@@ -139,7 +139,7 @@ void OpTensor(Handle& handle,
 
     if(ATensor == nullptr || BTensor == nullptr || CTensor == nullptr)
     {
-        MIOPEN_THROW(miopenStatusBadParm);
+        MIOPEN_THROW("miopenStatusBadParm");
     }
 
     if(aTensorDesc != cTensorDesc)
@@ -276,7 +276,7 @@ void CopyTensor(Handle& handle,
     if(srcDesc.GetElementSize() != destDesc.GetElementSize() ||
        srcDesc.GetType() != destDesc.GetType())
     {
-        MIOPEN_THROW(miopenStatusBadParm);
+        MIOPEN_THROW("miopenStatusBadParm");
     }
     size_t srcSize = srcDesc.GetElementSize();
 

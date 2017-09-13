@@ -117,7 +117,7 @@ miopenStatus_t SoftmaxBackward(Handle& handle,
 {
     if(yDesc != dxDesc)
     {
-        MIOPEN_THROW(miopenStatusBadParm);
+        MIOPEN_THROW("miopenStatusBadParm");
     }
     if(!float_equal(*(static_cast<const float*>(alpha)), 1.0) ||
        !float_equal(*(static_cast<const float*>(beta)), 0))

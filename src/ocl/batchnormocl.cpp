@@ -50,25 +50,25 @@ void BatchNormForwardTraining(Handle& handle,
 
     if(x == nullptr || y == nullptr || bnScale == nullptr || bnBias == nullptr)
     {
-        MIOPEN_THROW(miopenStatusBadParm);
+        MIOPEN_THROW("miopenStatusBadParm");
     }
     if(xDesc.GetSize() != yDesc.GetSize() || xDesc.GetSize() != bnScaleBiasMeanVarDesc.GetSize())
     {
-        MIOPEN_THROW(miopenStatusBadParm);
+        MIOPEN_THROW("miopenStatusBadParm");
     }
     if(xDesc.GetType() != yDesc.GetType() || xDesc.GetType() != bnScaleBiasMeanVarDesc.GetType())
     {
-        MIOPEN_THROW(miopenStatusBadParm);
+        MIOPEN_THROW("miopenStatusBadParm");
     }
     if(xDesc.GetSize() < 3)
     {
-        MIOPEN_THROW(miopenStatusBadParm);
+        MIOPEN_THROW("miopenStatusBadParm");
     }
     if(!float_equal(*(static_cast<const float*>(alpha)), 1.0) ||
        !float_equal(*(static_cast<const float*>(beta)), 0))
     {
         std::cerr << "Only alpha=1 and beta=0 is supported" << std::endl;
-        MIOPEN_THROW(miopenStatusBadParm);
+        MIOPEN_THROW("miopenStatusBadParm");
     }
 
     std::string program_name = "MIOpenBatchNormFwdTrain";
@@ -413,27 +413,27 @@ void BatchNormForwardInference(Handle& handle,
 
         if(x == nullptr || y == nullptr || bnScale == nullptr || bnBias == nullptr)
         {
-            MIOPEN_THROW(miopenStatusBadParm);
+            MIOPEN_THROW("miopenStatusBadParm");
         }
         if(xDesc.GetSize() != yDesc.GetSize() ||
            xDesc.GetSize() != bnScaleBiasMeanVarDesc.GetSize())
         {
-            MIOPEN_THROW(miopenStatusBadParm);
+            MIOPEN_THROW("miopenStatusBadParm");
         }
         if(xDesc.GetType() != yDesc.GetType() ||
            xDesc.GetType() != bnScaleBiasMeanVarDesc.GetType())
         {
-            MIOPEN_THROW(miopenStatusBadParm);
+            MIOPEN_THROW("miopenStatusBadParm");
         }
         if(xDesc.GetSize() < 3)
         {
-            MIOPEN_THROW(miopenStatusBadParm);
+            MIOPEN_THROW("miopenStatusBadParm");
         }
         if(!float_equal(*(static_cast<const float*>(alpha)), 1.0) ||
            !float_equal(*(static_cast<const float*>(beta)), 0))
         {
             std::cerr << "Only alpha=1 and beta=0 is supported" << std::endl;
-            MIOPEN_THROW(miopenStatusBadParm);
+            MIOPEN_THROW("miopenStatusBadParm");
         }
 
         std::string algo_name    = "miopenBatchNormalizationForwardInference";
@@ -554,32 +554,32 @@ void BatchNormBackward(Handle& handle,
 
     if(x == nullptr || dy == nullptr || bnScale == nullptr || dx == nullptr)
     {
-        MIOPEN_THROW(miopenStatusBadParm);
+        MIOPEN_THROW("miopenStatusBadParm");
     }
     if(xDesc.GetSize() != dyDesc.GetSize() || xDesc.GetSize() != bnScaleBiasDiffDesc.GetSize())
     {
-        MIOPEN_THROW(miopenStatusBadParm);
+        MIOPEN_THROW("miopenStatusBadParm");
     }
     if(dxDesc.GetType() != dyDesc.GetType() || dyDesc.GetType() != xDesc.GetType() ||
        xDesc.GetType() != bnScaleBiasDiffDesc.GetType())
     {
-        MIOPEN_THROW(miopenStatusBadParm);
+        MIOPEN_THROW("miopenStatusBadParm");
     }
     if(xDesc.GetSize() < 3)
     {
-        MIOPEN_THROW(miopenStatusBadParm);
+        MIOPEN_THROW("miopenStatusBadParm");
     }
     if(!float_equal(*(static_cast<const float*>(alphaDataDiff)), 1.0) ||
        !float_equal(*(static_cast<const float*>(betaDataDiff)), 0))
     {
         std::cerr << "Only alphaDataDiff=1 and betaDataDiff=0 is supported" << std::endl;
-        MIOPEN_THROW(miopenStatusBadParm);
+        MIOPEN_THROW("miopenStatusBadParm");
     }
     if(!float_equal(*(static_cast<const float*>(alphaParamDiff)), 1.0) ||
        !float_equal(*(static_cast<const float*>(betaParamDiff)), 0))
     {
         std::cerr << "Only alphaParamDiff=1 and betaParamDiff=0 is supported" << std::endl;
-        MIOPEN_THROW(miopenStatusBadParm);
+        MIOPEN_THROW("miopenStatusBadParm");
     }
 
     std::string algo_name    = "miopenBatchNormalizationBackwardProp";

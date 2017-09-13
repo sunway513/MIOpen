@@ -40,7 +40,7 @@ TensorDescriptor::TensorDescriptor(miopenDataType_t t, std::initializer_list<std
 {
     if(t != miopenFloat)
     {
-        MIOPEN_THROW(miopenStatusNotImplemented, "Only float datatype is supported");
+        MIOPEN_THROW("Only float datatype is supported");
     }
     this->CalculateStrides();
 }
@@ -52,7 +52,7 @@ TensorDescriptor::TensorDescriptor(miopenDataType_t t,
 {
     if(t != miopenFloat)
     {
-        MIOPEN_THROW(miopenStatusNotImplemented, "Only float datatype is supported");
+        MIOPEN_THROW("Only float datatype is supported");
     }
 }
 
@@ -61,7 +61,7 @@ TensorDescriptor::TensorDescriptor(miopenDataType_t t, const int* plens, int siz
 {
     if(t != miopenFloat)
     {
-        MIOPEN_THROW(miopenStatusNotImplemented, "Only float datatype is supported");
+        MIOPEN_THROW("Only float datatype is supported");
     }
     this->CalculateStrides();
 }
@@ -73,7 +73,7 @@ TensorDescriptor::TensorDescriptor(miopenDataType_t t,
 {
     if(t != miopenFloat)
     {
-        MIOPEN_THROW(miopenStatusNotImplemented, "Only float datatype is supported");
+        MIOPEN_THROW("Only float datatype is supported");
     }
 }
 

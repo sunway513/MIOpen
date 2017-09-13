@@ -60,7 +60,7 @@ std::string HIPErrorMessage(int error, const std::string& msg = "");
 #define MIOPEN_THROW_CL_STATUS(...) \
     MIOPEN_THROW(miopenStatusUnknownError, miopen::OpenCLErrorMessage(__VA_ARGS__))
 #define MIOPEN_THROW_HIP_STATUS(...) \
-    MIOPEN_THROW(miopenStatusUnknownError, miopen::HIPErrorMessage(__VA_ARGS__))
+    MIOPEN_THROW(miopen::HIPErrorMessage(__VA_ARGS__))
 
 // TODO(paul): Debug builds should leave the exception uncaught
 template <class F>
@@ -93,7 +93,7 @@ auto deref(T& x, miopenStatus_t err = miopenStatusBadParm)
 {
     if(x == nullptr)
     {
-        MIOPEN_THROW(err, "Dereferencing nullptr");
+        MIOPEN_THROW("Dereferencing nullptr");
     }
     return get_object(*x);
 }

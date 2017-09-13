@@ -44,7 +44,7 @@ ConvolutionDescriptor::ConvolutionDescriptor(
 {
     if(pad_h < 0 || pad_w < 0 || u < 0 || v < 0 || dilation_h < 0 || dilation_w < 0)
     {
-        MIOPEN_THROW(miopenStatusBadParm, "Parameters to filter cannot be negative");
+        MIOPEN_THROW( "Parameters to filter cannot be negative");
     }
 }
 
@@ -65,11 +65,11 @@ ConvolutionDescriptor::ConvolutionDescriptor(miopenConvolutionMode_t p_mode,
 {
     if(pad_h < 0 || pad_w < 0 || u < 0 || v < 0 || dilation_h < 0 || dilation_w < 0)
     {
-        MIOPEN_THROW(miopenStatusBadParm, "Parameters to filter cannot be negative");
+        MIOPEN_THROW( "Parameters to filter cannot be negative");
     }
     if(!(mode == miopenConvolution || mode == miopenTranspose))
     {
-        MIOPEN_THROW(miopenStatusBadParm, "Convolution mode not supported");
+        MIOPEN_THROW( "Convolution mode not supported");
     }
 }
 
@@ -82,7 +82,7 @@ ConvolutionDescriptor::GetForwardOutputDim(const TensorDescriptor& inputTensorDe
 
     if(inputTensorDesc.GetType() != filterDesc.GetType())
     {
-        MIOPEN_THROW(miopenStatusBadParm, "Types do not match for the filter");
+        MIOPEN_THROW( "Types do not match for the filter");
     }
 
     std::size_t input_n;
@@ -103,14 +103,14 @@ ConvolutionDescriptor::GetForwardOutputDim(const TensorDescriptor& inputTensorDe
     {
         if(input_c != filter_c)
         {
-            MIOPEN_THROW(miopenStatusBadParm, "Channels do not match for the filter");
+            MIOPEN_THROW( "Channels do not match for the filter");
         }
     }
     else if(mode == miopenTranspose)
     {
         if(input_c != filter_k)
         {
-            MIOPEN_THROW(miopenStatusBadParm, "Channels do not match for the filter");
+            MIOPEN_THROW( "Channels do not match for the filter");
         }
     }
 
@@ -305,7 +305,7 @@ ConvolutionDescriptor::GetBackwardsWeightsDim(const TensorDescriptor& inputTenso
 
     if(inputTensorDesc.GetType() != outputTensorDesc.GetType())
     {
-        MIOPEN_THROW(miopenStatusBadParm, "Types do not match for the filter");
+        MIOPEN_THROW( "Types do not match for the filter");
     }
 
     std::size_t input_n;
@@ -341,7 +341,7 @@ ConvolutionDescriptor::GetBackwardOutputDim(const TensorDescriptor& outputTensor
 
     if(outputTensorDesc.GetType() != filterDesc.GetType())
     {
-        MIOPEN_THROW(miopenStatusBadParm, "Types do not match for the filter");
+        MIOPEN_THROW( "Types do not match for the filter");
     }
 
     std::size_t output_n;
@@ -360,7 +360,7 @@ ConvolutionDescriptor::GetBackwardOutputDim(const TensorDescriptor& outputTensor
 
     if(output_c != filter_k)
     {
-        MIOPEN_THROW(miopenStatusBadParm, "Channels do not match for the filter");
+        MIOPEN_THROW( "Channels do not match for the filter");
     }
 
     return std::make_tuple(output_n,

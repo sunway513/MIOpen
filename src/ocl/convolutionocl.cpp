@@ -232,13 +232,13 @@ void ConvolutionDescriptor::FindConvFwdAlgorithm(Handle& handle,
 {
 
     if(x == nullptr || w == nullptr || y == nullptr)
-        MIOPEN_THROW(miopenStatusBadParm, "Buffers cannot be NULL");
+        MIOPEN_THROW( "Buffers cannot be NULL");
     if(returnedAlgoCount == nullptr)
-        MIOPEN_THROW(miopenStatusBadParm, "returnedAlgoCount cannot be nullptr");
+        MIOPEN_THROW( "returnedAlgoCount cannot be nullptr");
     if(perfResults == nullptr)
-        MIOPEN_THROW(miopenStatusBadParm, "perfResults cannot be nullptr");
+        MIOPEN_THROW( "perfResults cannot be nullptr");
     if(requestAlgoCount < 1)
-        MIOPEN_THROW(miopenStatusBadParm, "requestAlgoCount cannot be < 1");
+        MIOPEN_THROW( "requestAlgoCount cannot be < 1");
 
     AutoEnableProfiling enableProfiling{handle};
 
@@ -493,22 +493,22 @@ void ConvolutionDescriptor::ConvolutionForward(Handle& handle,
 
     if(x == nullptr || w == nullptr || y == nullptr)
     {
-        MIOPEN_THROW(miopenStatusBadParm);
+        MIOPEN_THROW("miopenStatusBadParm");
     }
     if(xDesc.GetSize() != yDesc.GetSize() || xDesc.GetSize() != wDesc.GetSize())
     {
-        MIOPEN_THROW(miopenStatusBadParm);
+        MIOPEN_THROW("miopenStatusBadParm");
     }
     if(xDesc.GetType() != yDesc.GetType() || xDesc.GetType() != wDesc.GetType())
     {
-        MIOPEN_THROW(miopenStatusBadParm);
+        MIOPEN_THROW("miopenStatusBadParm");
     }
     //    if(xDesc.GetLengths()[1] != wDesc.GetLengths()[1]) {
-    //        MIOPEN_THROW(miopenStatusBadParm);
+    //        MIOPEN_THROW("miopenStatusBadParm");
     //    }
     if(xDesc.GetSize() < 3)
     {
-        MIOPEN_THROW(miopenStatusBadParm);
+        MIOPEN_THROW("miopenStatusBadParm");
     }
     if(!float_equal(*(static_cast<const float*>(alpha)), 1.0) ||
        !float_equal(*(static_cast<const float*>(beta)), 0))
@@ -520,7 +520,7 @@ void ConvolutionDescriptor::ConvolutionForward(Handle& handle,
     {
         if(xDesc.GetLengths()[1] != wDesc.GetLengths()[1])
         {
-            MIOPEN_THROW(miopenStatusBadParm);
+            MIOPEN_THROW("miopenStatusBadParm");
         }
         switch(algo)
         {
@@ -725,7 +725,7 @@ void ConvolutionDescriptor::ConvolutionForward(Handle& handle,
     {
         if(xDesc.GetLengths()[1] != wDesc.GetLengths()[0])
         {
-            MIOPEN_THROW(miopenStatusBadParm);
+            MIOPEN_THROW("miopenStatusBadParm");
         }
 
         // GEMM based
@@ -829,13 +829,13 @@ void ConvolutionDescriptor::FindConvBwdDataAlgorithm(Handle& handle,
 {
 
     if(dx == nullptr || w == nullptr || dy == nullptr)
-        MIOPEN_THROW(miopenStatusBadParm, "Buffers cannot be NULL");
+        MIOPEN_THROW( "Buffers cannot be NULL");
     if(returnedAlgoCount == nullptr)
-        MIOPEN_THROW(miopenStatusBadParm, "returnedAlgoCount cannot be nullptr");
+        MIOPEN_THROW( "returnedAlgoCount cannot be nullptr");
     if(perfResults == nullptr)
-        MIOPEN_THROW(miopenStatusBadParm, "perfResults cannot be nullptr");
+        MIOPEN_THROW("perfResults cannot be nullptr");
     if(requestAlgoCount < 1)
-        MIOPEN_THROW(miopenStatusBadParm, "requestAlgoCount cannot be < 1");
+        MIOPEN_THROW("requestAlgoCount cannot be < 1");
 
     // create a dummy buffer for use as output for the kernel calls
     // because kernels are called purely for timing purposes
@@ -1099,22 +1099,22 @@ void ConvolutionDescriptor::ConvolutionBackwardData(Handle& handle,
 
     if(dx == nullptr || w == nullptr || dy == nullptr)
     {
-        MIOPEN_THROW(miopenStatusBadParm);
+        MIOPEN_THROW("miopenStatusBadParm");
     }
     if(dyDesc.GetSize() != dxDesc.GetSize() || dyDesc.GetSize() != wDesc.GetSize())
     {
-        MIOPEN_THROW(miopenStatusBadParm);
+        MIOPEN_THROW("miopenStatusBadParm");
     }
     if(dyDesc.GetType() != dxDesc.GetType() || dyDesc.GetType() != wDesc.GetType())
     {
-        MIOPEN_THROW(miopenStatusBadParm);
+        MIOPEN_THROW("miopenStatusBadParm");
     }
     //    if(dyDesc.GetLengths()[1] != wDesc.GetLengths()[0]) {
-    //       MIOPEN_THROW(miopenStatusBadParm);
+    //       MIOPEN_THROW("miopenStatusBadParm");
     //    }
     if(dyDesc.GetSize() < 3)
     {
-        MIOPEN_THROW(miopenStatusBadParm);
+        MIOPEN_THROW("miopenStatusBadParm");
     }
     if(!float_equal(*(static_cast<const float*>(alpha)), 1.0) ||
        !float_equal(*(static_cast<const float*>(beta)), 0))
@@ -1126,7 +1126,7 @@ void ConvolutionDescriptor::ConvolutionBackwardData(Handle& handle,
     {
         if(dyDesc.GetLengths()[1] != wDesc.GetLengths()[0])
         {
-            MIOPEN_THROW(miopenStatusBadParm);
+            MIOPEN_THROW("miopenStatusBadParm");
         }
         // Launch all kernels and store the perf, workspace limits, etc.
         switch(algo)
@@ -1289,7 +1289,7 @@ void ConvolutionDescriptor::ConvolutionBackwardData(Handle& handle,
     {
         if(dyDesc.GetLengths()[1] != wDesc.GetLengths()[1])
         {
-            MIOPEN_THROW(miopenStatusBadParm);
+            MIOPEN_THROW("miopenStatusBadParm");
         }
 
         int in_n, in_c, in_h, in_w;
@@ -1391,13 +1391,13 @@ void ConvolutionDescriptor::FindConvBwdWeightsAlgorithm(Handle& handle,
 {
 
     if(x == nullptr || dw == nullptr || dy == nullptr)
-        MIOPEN_THROW(miopenStatusBadParm, "Buffers cannot be NULL");
+        MIOPEN_THROW( "Buffers cannot be NULL");
     if(returnedAlgoCount == nullptr)
-        MIOPEN_THROW(miopenStatusBadParm, "returnedAlgoCount cannot be nullptr");
+        MIOPEN_THROW( "returnedAlgoCount cannot be nullptr");
     if(perfResults == nullptr)
-        MIOPEN_THROW(miopenStatusBadParm, "perfResults cannot be nullptr");
+        MIOPEN_THROW( "perfResults cannot be nullptr");
     if(requestAlgoCount < 1)
-        MIOPEN_THROW(miopenStatusBadParm, "requestAlgoCount cannot be < 1");
+        MIOPEN_THROW( "requestAlgoCount cannot be < 1");
 
     // create a dummy buffer for use as output for the kernel calls
     // because kernels are called purely for timing purposes
@@ -1676,23 +1676,23 @@ void ConvolutionDescriptor::ConvolutionBackwardWeights(Handle& handle,
 
     if(x == nullptr || dw == nullptr || dy == nullptr)
     {
-        MIOPEN_THROW(miopenStatusBadParm);
+        MIOPEN_THROW("miopenStatusBadParm");
     }
     if(dyDesc.GetSize() != dwDesc.GetSize() || dyDesc.GetSize() != xDesc.GetSize())
     {
-        MIOPEN_THROW(miopenStatusBadParm);
+        MIOPEN_THROW("miopenStatusBadParm");
     }
     if(dyDesc.GetType() != dwDesc.GetType() || dyDesc.GetType() != xDesc.GetType())
     {
-        MIOPEN_THROW(miopenStatusBadParm);
+        MIOPEN_THROW("miopenStatusBadParm");
     }
     if(dyDesc.GetLengths()[0] != xDesc.GetLengths()[0])
     {
-        MIOPEN_THROW(miopenStatusBadParm);
+        MIOPEN_THROW("miopenStatusBadParm");
     }
     if(dyDesc.GetSize() < 3)
     {
-        MIOPEN_THROW(miopenStatusBadParm);
+        MIOPEN_THROW("miopenStatusBadParm");
     }
     if(!float_equal(*(static_cast<const float*>(alpha)), 1.0) ||
        !float_equal(*(static_cast<const float*>(beta)), 0))
@@ -1939,11 +1939,11 @@ void ConvolutionBackwardBias(Handle& handle,
 {
     if(dy == nullptr || db == nullptr)
     {
-        MIOPEN_THROW(miopenStatusBadParm);
+        MIOPEN_THROW("miopenStatusBadParm");
     }
     if(dyDesc.GetLengths()[1] != dbDesc.GetLengths()[1])
     {
-        MIOPEN_THROW(miopenStatusBadParm);
+        MIOPEN_THROW("miopenStatusBadParm");
     }
     if(!float_equal(*(static_cast<const float*>(alpha)), 1.0) ||
        !float_equal(*(static_cast<const float*>(beta)), 0))
